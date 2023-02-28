@@ -28,10 +28,19 @@ class _HomeState extends State<Home> {
   var b = Icon(Icons.favorite_border_outlined,color: Colors.black,size:40,);
    Icon changedicon = Icon(Icons.favorite,color:Colors.red,size:40);
   List displayedtext=["APPLE","MANGO","BANANA","GRAPES","BERRY","MILK","BUTTER"];
-
- 
-  var mainlist ={};
-  mainlist['text']='Under';
+Map <String,dynamic>mainmap = {};
+ @override
+ void initState(){
+  mainmap = {
+    'text':displayedtext[a],'icons':Container(child:Text("Display")),'number':a};
+    for(int y=0;y<displayedtext.length;y++){
+      mainmap['text']=displayedtext[y];
+      mainmap['icons']=Container()
+    }
+  List <Map> mainlist=[for(int i=0;i<displayedtext.length;i++)mainmap];
+ }
+  
+  
   int a=0;
   bool again = true;
   @override
@@ -52,7 +61,7 @@ class _HomeState extends State<Home> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Center(child: Text(displayedtext[a],style: TextStyle(fontSize: 80,color: Colors.white),)),
+                Center(child: Text(mainmap['text'],style: TextStyle(fontSize: 80,color: Colors.white),)),
                 SizedBox(height: 60,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
