@@ -1,3 +1,4 @@
+import 'package:factsapp/modal/amahric.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -5,6 +6,7 @@ import 'package:swipe/swipe.dart';
 import'package:factsapp/generalsetting.dart';
 import 'package:factsapp/categories.dart';
 import 'package:factsapp/background.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
 class Home extends StatefulWidget {
   // const Home({super.key});
   var wall;
@@ -14,7 +16,7 @@ Home({Key? mykey,this.wall}):super(key:mykey);
 }
 
 class _HomeState extends State<Home> {
-
+late List<Amharic> amharic;
 String back="galaxy.jpg";
   void Touched(){
     setState(() {
@@ -26,19 +28,32 @@ String back="galaxy.jpg";
       a--;
     });
   }
-  Icon changeicon = Icon(Icons.favorite_border_outlined,color: Colors.black,size:40,);
-  Icon changeiconshare = Icon(Icons.share,color: Colors.black,size:40,);
+  Icon changeicon = Icon(Icons.favorite_border_outlined,color: Colors.white,size:40,);
+  Icon changeiconshare = Icon(Icons.share,color: Colors.white,size:40,);
    Icon changediconshare = Icon(Icons.share,color: Colors.blue,size:40,);
-  var b = Icon(Icons.favorite_border_outlined,color: Colors.black,size:40,);
+  var b = Icon(Icons.favorite_border_outlined,color: Colors.white,size:40,);
    Icon changedicon = Icon(Icons.favorite,color:Colors.red,size:40);
   List displayedtext=["APPLE","MANGO","BANANA","GRAPES","BERRY","MILK","BUTTER"];
 Map <String,dynamic>mainmap = {};
  @override
  void initState(){
+  AwesomeNotifications().isNotificationAllowed().then((isAllowed){
+    if(!isAllowed){
+      AwesomeNotifications().requestPermissionToSendNotifications();
+    }
+  });
+  AwesomeNotifications().createNotification(
+    content: NotificationContent(
+      id: 20, 
+      channelKey: 'basic_channel',
+      title: 'Did you know',
+      body:'Injera is the most common food, in Ethiopia',
+      ),
+  );
   if(widget.wall!=null){
   back=widget.wall;
   }else{
-    back="galaxy.jpg";
+    back="wallone.jpg";
   }
   mainmap = {};
     // 'text':displayedtext[a],'icons':Container(child:Text("Display")),'number':a};
@@ -64,7 +79,7 @@ Map <String,dynamic>mainmap = {};
           width: double.infinity,
           height: double.infinity,
           decoration: BoxDecoration(
-                        image: DecorationImage(image: AssetImage("images/$back"),fit: BoxFit.cover),
+                        image: DecorationImage(image: AssetImage("images/New/$back"),fit: BoxFit.cover),
                       ),
           child: Container(
             width: 600,
@@ -80,129 +95,109 @@ Map <String,dynamic>mainmap = {};
                 //     Text('${mainlist[a]}'),
                 //   ],
                 // ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(onPressed: (){setState(() {
-                      
-                    if(again=true){
-                      
-                      changeicon=changedicon;
-                      again=false;
-                      }
-                      if(again=false){
-                       changeicon=b;
-                       
-                      }
-                    });}, icon: mainmap['favicon']),
-                    IconButton(onPressed: (){setState(() {
-                      changeiconshare=changediconshare;
-                    });}, icon: mainmap['shareicon']),
-                    IconButton(icon:Icon(Icons.settings,size: 40,) ,onPressed:(){
-                      showModalBottomSheet(context: context, builder:(BuildContext context){
-                        return SingleChildScrollView(
-                          child: Container(
-                            width: 500,
-                            height: 600,
-                            decoration: BoxDecoration(
-                              color:Color.fromARGB(255, 247, 245, 245),
-                              borderRadius: BorderRadius.only(topLeft:Radius.circular(25),topRight:Radius.circular(25)),
-                            ),
-                            child: Column(children: [
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Settings()));
-                                      },
-                                      child: Container(
-                                        width: 300,
-                                        height:100,
-                                       margin: EdgeInsets.all(10),
-                                                                    padding: EdgeInsets.all(10),
-                                       
-                                        decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(15),boxShadow: <BoxShadow>[
-                                          BoxShadow(
-                                            color:Colors.black54,
-                                            blurRadius: 15.0,
-                                            offset:Offset(0.0,0.75),
-                                          )
-                                        ]),
-                                        child: ListTile(
-                                          leading:Icon(Icons.settings,color: Colors.purple,size: 50,),
-                                          title: Text("General Settings",style: TextStyle(color:Color.fromARGB(255, 65, 64, 64),fontSize: 30),),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(onPressed: (){setState(() {
+                        
+                      if(again=true){
+                        
+                        changeicon=changedicon;
+                        again=false;
+                        }
+                        if(again=false){
+                         changeicon=b;
+                         
+                        }
+                      });}, icon: mainmap['favicon']),
+                      Padding(
+                        padding: const EdgeInsets.all(5.0),
+                        child: IconButton(
+                        
+                          onPressed: (){setState(() {
+                          changeiconshare=changediconshare;
+                        });}, icon: mainmap['shareicon']),
+                      ),
+                      IconButton(icon:Icon(Icons.settings,size: 40,color: Colors.white,) ,onPressed:(){
+                        showModalBottomSheet(context: context, builder:(BuildContext context){
+                          return SingleChildScrollView(
+                            child: Container(
+                              width: 500,
+                              height: 600,
+                              decoration: BoxDecoration(
+                                color:Color.fromARGB(255, 247, 245, 245),
+                                borderRadius: BorderRadius.only(topLeft:Radius.circular(25),topRight:Radius.circular(25)),
+                              ),
+                              child: Column(children: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=>Settings()));
+                                        },
+                                        child: Container(
+                                          width: 300,
+                                          height:100,
+                                         margin: EdgeInsets.all(10),
+                                                                      padding: EdgeInsets.all(10),
+                                         
+                                          decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(15),boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                              color:Colors.black54,
+                                              blurRadius: 15.0,
+                                              offset:Offset(0.0,0.75),
+                                            )
+                                          ]),
+                                          child: ListTile(
+                                            leading:Icon(Icons.settings,color: Colors.purple,size: 50,),
+                                            title: Text("General Settings",style: TextStyle(color:Color.fromARGB(255, 65, 64, 64),fontSize: 30),),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: () => {
-                                        Navigator.push(context,MaterialPageRoute(builder:(context)=>Category())),
-                                      },
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: GestureDetector(
+                                        onTap: () => {
+                                          Navigator.push(context,MaterialPageRoute(builder:(context)=>Category())),
+                                        },
+                                        child: Container(
+                                           width: 300,
+                                          height:100,
+                                          margin: EdgeInsets.all(10),
+                                                                      padding: EdgeInsets.all(10),
+                                          decoration: BoxDecoration(color:Colors.white,borderRadius: BorderRadius.circular(15),boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                              color:Colors.black54,
+                                              blurRadius: 10.0,
+                                              offset:Offset(0.0,0.75),
+                                            )
+                                          ]),
+                                          child: ListTile(
+                                                          leading:Icon(Icons.category,color:Color.fromARGB(255, 77, 216, 226),size: 50,),
+                                                          title: Text("Catagories",style: TextStyle(color:Color.fromARGB(255, 65, 64, 64),fontSize: 30),),
+                                                        ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                
+                                Row(
+                                  children: [
+                                    Expanded(
                                       child: Container(
                                          width: 300,
                                         height:100,
                                         margin: EdgeInsets.all(10),
-                                                                    padding: EdgeInsets.all(10),
-                                        decoration: BoxDecoration(color:Colors.white,borderRadius: BorderRadius.circular(15),boxShadow: <BoxShadow>[
-                                          BoxShadow(
-                                            color:Colors.black54,
-                                            blurRadius: 10.0,
-                                            offset:Offset(0.0,0.75),
-                                          )
-                                        ]),
-                                        child: ListTile(
-                                                        leading:Icon(Icons.category,color:Color.fromARGB(255, 77, 216, 226),size: 50,),
-                                                        title: Text("Catagories",style: TextStyle(color:Color.fromARGB(255, 65, 64, 64),fontSize: 30),),
-                                                      ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Container(
-                                       width: 300,
-                                      height:100,
-                                      margin: EdgeInsets.all(10),
-                                  padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(9),boxShadow: <BoxShadow>[
-                                        BoxShadow(
-                                          color:Colors.black54,
-                                          blurRadius: 10.0,
-                                          offset:Offset(0.0,0.75),
-                                        )
-                                      ]),
-                                      alignment: Alignment.center,
-                                      child: ListTile(
-                                        leading:Icon(Icons.favorite,color: Colors.orange,size: 50,),
-                                        title: Text("Favorites",style: TextStyle(color:Color.fromARGB(255, 65, 64, 64),fontSize: 30),),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: GestureDetector(
-                                      onTap: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Background()));
-                                      },
-                                      child: Container(
-                                         width: 300,
-                                        height:100,
-                                        margin: EdgeInsets.all(10),
-                                                                    padding: EdgeInsets.all(10),
+                                    padding: EdgeInsets.all(10),
                                         decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(9),boxShadow: <BoxShadow>[
                                           BoxShadow(
                                             color:Colors.black54,
@@ -212,19 +207,48 @@ Map <String,dynamic>mainmap = {};
                                         ]),
                                         alignment: Alignment.center,
                                         child: ListTile(
-                                          leading:Icon(Icons.ac_unit,color: Color.fromARGB(255, 104, 102, 99),size: 50,),
-                                          title: Text("Background",style: TextStyle(color:Color.fromARGB(255, 65, 64, 64),fontSize: 30),),
+                                          leading:Icon(Icons.favorite,color: Colors.orange,size: 50,),
+                                          title: Text("Favorites",style: TextStyle(color:Color.fromARGB(255, 65, 64, 64),fontSize: 30),),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],),
-                          ),
-                        );} );
-                    }),
-                  ],
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: GestureDetector(
+                                        onTap: (){
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=>Background()));
+                                        },
+                                        child: Container(
+                                           width: 300,
+                                          height:100,
+                                          margin: EdgeInsets.all(10),
+                                                                      padding: EdgeInsets.all(10),
+                                          decoration: BoxDecoration(color: Colors.white,borderRadius: BorderRadius.circular(9),boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                              color:Colors.black54,
+                                              blurRadius: 10.0,
+                                              offset:Offset(0.0,0.75),
+                                            )
+                                          ]),
+                                          alignment: Alignment.center,
+                                          child: ListTile(
+                                            leading:Icon(Icons.ac_unit,color: Color.fromARGB(255, 104, 102, 99),size: 50,),
+                                            title: Text("Background",style: TextStyle(color:Color.fromARGB(255, 65, 64, 64),fontSize: 30),),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],),
+                            ),
+                          );} );
+                      }),
+                    ],
+                  ),
                 )
               ],
             ),

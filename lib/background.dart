@@ -34,7 +34,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/galaxy.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/New/wallone.jpg"),fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                     boxShadow:  [BoxShadow(
                                       blurRadius: 5.0,
@@ -58,7 +58,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/walltwo.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/New/walltwo.jpg"),fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                     boxShadow:  [BoxShadow(
                                       blurRadius: 5.0,
@@ -82,7 +82,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/wallthree.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/New/wallthree.jpg"),fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                     boxShadow:  [BoxShadow(
                                       blurRadius: 5.0,
@@ -106,7 +106,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/wallfour.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/New/wallfour.jpg"),fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                     boxShadow:  [BoxShadow(
                                       blurRadius: 5.0,
@@ -130,7 +130,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/wallfive.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/New/wallfive.jpg"),fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                     boxShadow:  [BoxShadow(
                                       blurRadius: 5.0,
@@ -154,7 +154,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/wallsix.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/New/wallsix.jpg"),fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                     boxShadow:  [BoxShadow(
                                       blurRadius: 5.0,
@@ -178,7 +178,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/wallseven.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/New/wallseven.jpg"),fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                     boxShadow:  [BoxShadow(
                                       blurRadius: 5.0,
@@ -202,7 +202,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/walleight.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/New/walleight.jpg"),fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                     boxShadow:  [BoxShadow(
                                       blurRadius: 5.0,
