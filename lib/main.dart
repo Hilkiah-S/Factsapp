@@ -1,7 +1,27 @@
 import 'package:flutter/material.dart';
 import'package:factsapp/home.dart';
 import 'package:awesome_notifications/awesome_notifications.dart';
-void main() {
+import 'package:factsapp/modal/genral.dart';
+import 'package:factsapp/modal/general.dart';
+import'package:factsapp/excel.dart';
+import 'package:factsapp/database.dart';
+import'package:hive_flutter/hive_flutter.dart';
+
+void main()async {
+  await Hive.initFlutter();
+  var box = await Hive.openBox('testBox');
+//  Hive.registerAdapter(DatabaseAdapter());
+//  box.put('DB',Database(name:"Bedelu",currentIndex: 0,favoritedb: ["the","End"]));
+//  WidgetsFlutterBinding.ensureInitialized();
+//  final document = await getApplicationDocumentsDirectory();
+//   await Hive.initFlutter(document.path);
+//  await Hive.initFlutter();
+//  box = await Hive.openBox('DB');
+//  Hive.registerAdapter(DatabaseAdapter());
+//  box.put('DB',Database(name:"Bedelu",currentIndex: 0,favoritedb: ["the","End"]));
+    
+    
+  
   AwesomeNotifications().initialize(
     null,
     [

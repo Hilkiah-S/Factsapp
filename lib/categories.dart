@@ -16,6 +16,15 @@ class _CategoryState extends State<Category> {
  bool sportbool=false;
  bool animalbool=false;
  bool sciencebool=false;
+ String general ="general";
+//  String general ="general";
+//  String general ="general";
+
+//  String general ="general";
+//  String general ="general";
+//  String general ="general";
+//  String general ="general";
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,6 +50,9 @@ class _CategoryState extends State<Category> {
                           
                           GestureDetector(
                             onTap:() {
+                              onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:"general")));
+                                };
                               setState(() {
                                 generalbool? generalbool=false:generalbool=true;
                               });
@@ -82,6 +94,9 @@ class _CategoryState extends State<Category> {
                           
                           GestureDetector(
                             onTap:() {
+                               onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:"universe")));
+                                };
                               setState(() {
                                 universebool? universebool=false:universebool=true;
                               });
@@ -131,6 +146,9 @@ class _CategoryState extends State<Category> {
                           
                           GestureDetector(
                             onTap:() {
+                               onTap: (){
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:"sport")));
+                                };
                               setState(() {
                                 sportbool? sportbool=false:sportbool=true;
                               });
