@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:factsapp/home.dart';
 
 class Category extends StatefulWidget {
-  const Category({super.key});
+  // const Category({super.key});
+  
+
+  
+ Category({Key? mykey}) : super(key: mykey);
 
   @override
   State<Category> createState() => _CategoryState();
@@ -16,14 +20,7 @@ class _CategoryState extends State<Category> {
  bool sportbool=false;
  bool animalbool=false;
  bool sciencebool=false;
- String general ="general";
-//  String general ="general";
-//  String general ="general";
 
-//  String general ="general";
-//  String general ="general";
-//  String general ="general";
-//  String general ="general";
 
   @override
   Widget build(BuildContext context) {
@@ -50,9 +47,9 @@ class _CategoryState extends State<Category> {
                           
                           GestureDetector(
                             onTap:() {
-                              onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:"general")));
-                                };
+                            
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:1)));
+                                
                               setState(() {
                                 generalbool? generalbool=false:generalbool=true;
                               });
@@ -94,9 +91,9 @@ class _CategoryState extends State<Category> {
                           
                           GestureDetector(
                             onTap:() {
-                               onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:"universe")));
-                                };
+                               
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:2)));
+                                
                               setState(() {
                                 universebool? universebool=false:universebool=true;
                               });
@@ -146,9 +143,9 @@ class _CategoryState extends State<Category> {
                           
                           GestureDetector(
                             onTap:() {
-                               onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:"sport")));
-                                };
+                              
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:3)));
+                                
                               setState(() {
                                 sportbool? sportbool=false:sportbool=true;
                               });
@@ -190,6 +187,7 @@ class _CategoryState extends State<Category> {
                           
                           GestureDetector(
                             onTap:() {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:4)));
                               setState(() {
                                 animalbool? animalbool=false:animalbool=true;
                               });
@@ -239,6 +237,7 @@ class _CategoryState extends State<Category> {
                           
                           GestureDetector(
                             onTap:() {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:5)));
                               setState(() {
                                 sciencebool? sciencebool=false:sciencebool=true;
                               });
@@ -281,6 +280,7 @@ class _CategoryState extends State<Category> {
                           
                           GestureDetector(
                             onTap:() {
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:6)));
                               setState(() {
                                 humanbodybool? humanbodybool=false:humanbodybool=true;
                               });
@@ -334,6 +334,7 @@ class _CategoryState extends State<Category> {
                               
                               GestureDetector(
                                 onTap:() {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:7)));
                                   setState(() {
                                     lifehackbool? lifehackbool=false:lifehackbool=true;
                                   });
@@ -370,6 +371,49 @@ class _CategoryState extends State<Category> {
                                                 ],
                                               ),
                             ),
+                            
+                        Expanded(
+                          child: Stack(
+                                            children: <Widget>[
+                          
+                          GestureDetector(
+                            onTap:() {
+                               
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:8)));
+                                
+                              setState(() {
+                                universebool? universebool=false:universebool=true;
+                              });
+                            },
+                            child: Expanded(
+                              child: Container(
+                                margin: EdgeInsets.all(10),
+                                      width: 500,
+                                      height: 300,
+                                      decoration: BoxDecoration(
+                                  image: DecorationImage(image: AssetImage("images/human.jpeg"),fit: BoxFit.cover),
+                                  borderRadius:BorderRadius.circular(20),
+                                  boxShadow:  [BoxShadow(
+                                    blurRadius: 5.0,
+                                    offset: Offset(0,5),
+                                                  ),],
+                                  
+                                ),
+                                child: Visibility(
+                                  visible: universebool,
+                                  child: Align(
+                                    alignment: Alignment.topRight,
+                                    child: Icon(Icons.check_circle_outline_rounded ,color: Color.fromARGB(255, 44, 245, 51),size:70)),
+                                ),),
+                            ),
+                          ),
+                                             
+                          Positioned.fill(child: Align(
+                            alignment: Alignment.center,
+                            child: Text("Sex",style: TextStyle(color: Colors.white,fontSize: 30),))),
+                                            ],
+                                          ),
+                        ),
                           ],
                         ),
             

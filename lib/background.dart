@@ -138,34 +138,34 @@ class Background extends StatelessWidget {
                               ),),
                 ],
               ),
-               Row(
-                children: [
-                  Expanded(
-                              child: GestureDetector(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:e)));
-                                },
-                                child: Container(
+        //        Row(
+        //         children: [
+        //           Expanded(
+        //                       child: GestureDetector(
+        //                         onTap: (){
+        //                           Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:e)));
+        //                         },
+        //                         child: Container(
                     
-                                  margin: EdgeInsets.all(10),
-                                        width: 300,
-                                        height: 300,
-                                        decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/New/wallfive.jpg"),fit: BoxFit.cover),
-                                    borderRadius:BorderRadius.circular(20),
-                                     border: Border.all(
-          color: Colors.white, //color of border
-          width: 1, //width of border
-        ),
-                                    boxShadow:  [BoxShadow(
-                                      blurRadius: 5.0,
-                                      offset: Offset(0,5),
-                                                    ),],
+        //                           margin: EdgeInsets.all(10),
+        //                                 width: 300,
+        //                                 height: 300,
+        //                                 decoration: BoxDecoration(
+        //                             image: DecorationImage(image: AssetImage("images/New/wallfive.jpg"),fit: BoxFit.cover),
+        //                             borderRadius:BorderRadius.circular(20),
+        //                              border: Border.all(
+        //   color: Colors.white, //color of border
+        //   width: 1, //width of border
+        // ),
+        //                             boxShadow:  [BoxShadow(
+        //                               blurRadius: 5.0,
+        //                               offset: Offset(0,5),
+        //                                             ),],
                                     
-                                  ),),
-                              ),),
-                ],
-              ),
+        //                           ),),
+        //                       ),),
+        //         ],
+        //       ),
                Row(
                 children: [
                   Expanded(

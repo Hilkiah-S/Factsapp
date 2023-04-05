@@ -72,6 +72,7 @@ class _HomeState extends State<Home> {
   List<String?> sex = [];
   List<String?> humanBiology = [];
   List<String?> universe = [];
+   List<String?> filled = [];
   bool favoritebool = false;
 
   late List<Amharic> amharic;
@@ -79,15 +80,16 @@ class _HomeState extends State<Home> {
 
   
   void Touched() {
-    if(currentSwipeIndex == selected.length) {
-      currentSwipeIndex=selected.length;
+    if(currentSwipeIndex == filled.length-1) {
+      currentSwipeIndex=filled.length-1;
+      _mybox.put(40,currentSwipeIndex);
     }
     else{
     setState(() {
       currentSwipeIndex++;
       
     });
-    _mybox.put(34,currentSwipeIndex);
+     _mybox.put(40, currentSwipeIndex);
     }
     // box.put('DB',Database(name:"Abebe",currentIndex: currentSwipeIndex,favoritedb: ["THis was put","2ndsession"]));
   }
@@ -95,12 +97,13 @@ class _HomeState extends State<Home> {
   void Toucheddown() {
     if(currentSwipeIndex == 0) {
       currentSwipeIndex=0;
+      _mybox.put(40, currentSwipeIndex);
     }
     else{
     setState(() {
       currentSwipeIndex--;
     });
-    _mybox.put(34, currentSwipeIndex);
+     _mybox.put(40, currentSwipeIndex);
     }
   }
 
@@ -132,7 +135,7 @@ class _HomeState extends State<Home> {
   Icon changedicon = const Icon(Icons.favorite, color: Colors.red, size: 40);
  
   List favorites= [];
-  Map<String, dynamic> mainmap = {};
+  
 bool clicked=false;
 bool value = true;
 bool option = true;
@@ -148,7 +151,15 @@ Future _readExcelOromo(value) async {
     Sheet amharic = excel.tables["Amharic"]!;
     Sheet oromo = excel.tables["Oromo"]!;
     Sheet selectedSheet = oromo;
-  selected.clear();
+  filled.clear();
+  general.clear();
+  lifeHack.clear();
+  animals.clear();
+  sport.clear();
+  science.clear();
+  sex.clear();
+  humanBiology.clear();
+  universe.clear();
     for (var i = 0; i < selectedSheet.maxRows; i++) {
       if(i == 0) continue;
       general.add(selectedSheet.rows[i][0]?.value.toString());
@@ -161,7 +172,8 @@ Future _readExcelOromo(value) async {
       universe.add(selectedSheet.rows[i][7]?.value.toString());
     }
     dataLoading = false;
-    print('General List $general');
+    calledtofill();
+    print('General List $sex');
     setState(() {});
   }
 
@@ -189,7 +201,15 @@ Future _readExcel(value) async {
     Sheet oromo = excel.tables["Oromo"]!;
     // Sheet selectedSheet = value ? amharic : oromo;
 Sheet selectedSheet=amharic;
- selected.clear(); 
+ filled.clear(); 
+ general.clear();
+  lifeHack.clear();
+  animals.clear();
+  sport.clear();
+  science.clear();
+  sex.clear();
+  humanBiology.clear();
+  universe.clear();
     for (var i = 0; i < selectedSheet.maxRows; i++) {
       if(i == 0) continue;
       general.add(selectedSheet.rows[i][0]?.value.toString());
@@ -203,18 +223,59 @@ Sheet selectedSheet=amharic;
     }
  
        dataLoading = false;
-     
+       calledtofill();
     print('General List $general');
     setState(() {});
   }
   // _mybox.g
-  dynamic selected;
+  void calledtofill(){
+    if (widget.select != null) {
+      filled.clear();
+      if(widget.select==1){
+        filled.addAll(general);
+      }
+      if(widget.select==2){
+        filled.addAll(universe);
+      }
+      if(widget.select==3){
+        filled.addAll(sport);
+      }
+      if(widget.select==4){
+        filled.addAll(animals);
+      }
+      if(widget.select==5){
+        filled.addAll(science);
+      }
+      if(widget.select==6){
+        filled.addAll(humanBiology);
+      }
+      if(widget.select==7){
+        filled.addAll(lifeHack);
+      }
+      if(widget.select==8){
+        filled.addAll(sex);
+      }
+      
+      
+    } else {
+      filled.addAll(general);
+      // _mybox.put(33,filled);
+      // setState(() {
+      //   selected = _mybox.get(33);
+      // },);
+      
+    }
+    
+  }
+  late List selected;
+ 
   @override
   void initState() {
     // Database one = box.get('Db');
   // print(one.favoritedb);
   // addtobedisplayed(valuebg);
   _readExcel(value);
+  
   super.initState();
     // readExcelFile();
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
@@ -237,7 +298,12 @@ Sheet selectedSheet=amharic;
                    )
     );
     
-  
+    if(_mybox.get(40)!=null){
+      setState(() {
+        currentSwipeIndex=_mybox.get(40);
+      });
+    }
+
     if (widget.wall != null) {
       back = widget.wall;
       _mybox.put(1,back);
@@ -248,18 +314,8 @@ Sheet selectedSheet=amharic;
       background = _mybox.get(1);
     }
 
-    if (widget.select != null) {
-      selected = widget.select;
-      _mybox.put(33,selected);
-      selected = _mybox.get(33);
-    } else {
-      _mybox.put(33,"general");
-      selected =  _mybox.get(33);
-      // _mybox.put(1,back);
-      // background = _mybox.get(1);
-    }
     
-    mainmap = {};
+   
     // 'text':displayedtext[a],'icons':Container(child:Text("Display")),'number':a};
     
     
@@ -327,7 +383,7 @@ Sheet selectedSheet=amharic;
                               child: Padding(
                                 padding: const EdgeInsets.all(30.0),
                                 child: Text(
-                            '${selected[currentSwipeIndex]}',
+                            '${filled[currentSwipeIndex]}',
                             style: const TextStyle(
                                   fontSize: 30, color: Colors.white),
                           ),
@@ -366,16 +422,18 @@ Sheet selectedSheet=amharic;
                                           if (favoritebool == true) {
                                             xq = changeicon;
                                             favoritebool = false;
-                                            favorites.remove(selected[currentSwipeIndex]);
+                                            favorites.remove(filled[currentSwipeIndex]);
                                             // box!.put('DB',Database(name:"Abebe",currentIndex: 0,favoritedb: favorites));
                                             print(favorites);
                                           } else {
                                             xq = changedicon;
                                             favoritebool = true;
                                             
-                                            favorites.add(selected[currentSwipeIndex]);
+                                            favorites.add(filled[
+                                              currentSwipeIndex
+                                            ]);
                                             print(favorites);
-                                            writeintodb(selected[currentSwipeIndex]);
+                                            writeintodb(filled[currentSwipeIndex]);
                                           }
                                         });
                                       },
@@ -386,7 +444,7 @@ Sheet selectedSheet=amharic;
                                         child: IconButton(
                                         onPressed: () {
                                           print(_mybox.get(2));
-                                          Share.share(selected[currentSwipeIndex]!);
+                                          Share.share(filled[currentSwipeIndex]!);
                                           setState(() {
                                             changeiconshare = changediconshare;
                                           });
@@ -499,7 +557,7 @@ Sheet selectedSheet=amharic;
                                                                     MaterialPageRoute(
                                                                         builder:
                                                                             (context) =>
-                                                                                const Category())),
+                                                                                 Category())),
                                                               },
                                                               child: Container(
                                                                 width: 300,
