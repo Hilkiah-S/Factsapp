@@ -30,7 +30,7 @@ class Background extends StatelessWidget {
                               child: GestureDetector(
                                 
                                 onTap: (){
-                                  // _mybox.put(1, a);
+                                  _mybox.put(1, a);
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:a)));
                                 },
                                 child: Container(
@@ -39,7 +39,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/New/wallone.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/wallone.jpg"), fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                     border: Border.all(
           color: Colors.white, //color of border
@@ -54,39 +54,40 @@ class Background extends StatelessWidget {
                               ),),
                 ],
               ),
-               Row(
-                children: [
-                  Expanded(
-                              child: GestureDetector(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:b)));
-                                },
-                                child: Container(
+        //        Row(
+        //         children: [
+        //           Expanded(
+        //                       child: GestureDetector(
+        //                         onTap: (){
+        //                           Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:b)));
+        //                         },
+        //                         child: Container(
                     
-                                  margin: EdgeInsets.all(10),
-                                        width: 300,
-                                        height: 300,
-                                        decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/New/walltwo.jpg"),fit: BoxFit.cover),
-                                    borderRadius:BorderRadius.circular(20),
-                                     border: Border.all(
-          color: Colors.white, //color of border
-          width: 1, //width of border
-        ),
-                                    boxShadow:  [BoxShadow(
-                                      blurRadius: 5.0,
-                                      offset: Offset(0,5),
-                                                    ),],
+        //                           margin: EdgeInsets.all(10),
+        //                                 width: 300,
+        //                                 height: 300,
+        //                                 decoration: BoxDecoration(
+        //                             image: DecorationImage(image: AssetImage("images/New/walltwo.jpg"),fit: BoxFit.cover),
+        //                             borderRadius:BorderRadius.circular(20),
+        //                              border: Border.all(
+        //   color: Colors.white, //color of border
+        //   width: 1, //width of border
+        // ),
+        //                             boxShadow:  [BoxShadow(
+        //                               blurRadius: 5.0,
+        //                               offset: Offset(0,5),
+        //                                             ),],
                                     
-                                  ),),
-                              ),),
-                ],
-              ),
+        //                           ),),
+        //                       ),),
+        //         ],
+        //       ),
                Row(
                 children: [
                   Expanded(
                               child: GestureDetector(
                                 onTap: (){
+                                  _mybox.put(1, c);
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:c)));
                                 },
                                 child: Container(
@@ -95,7 +96,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/New/wallthree.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/wallthree.jpg"), fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                      border: Border.all(
           color: Colors.white, //color of border
@@ -110,34 +111,34 @@ class Background extends StatelessWidget {
                               ),),
                 ],
               ),
-               Row(
-                children: [
-                  Expanded(
-                              child: GestureDetector(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:d)));
-                                },
-                                child: Container(
+        //        Row(
+        //         children: [
+        //           Expanded(
+        //                       child: GestureDetector(
+        //                         onTap: (){
+        //                           Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:d)));
+        //                         },
+        //                         child: Container(
                     
-                                  margin: EdgeInsets.all(10),
-                                        width: 300,
-                                        height: 300,
-                                        decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/New/wallfour.jpg"),fit: BoxFit.cover),
-                                    borderRadius:BorderRadius.circular(20),
-                                     border: Border.all(
-          color: Colors.white, //color of border
-          width: 1, //width of border
-        ),
-                                    boxShadow:  [BoxShadow(
-                                      blurRadius: 5.0,
-                                      offset: Offset(0,5),
-                                                    ),],
+        //                           margin: EdgeInsets.all(10),
+        //                                 width: 300,
+        //                                 height: 300,
+        //                                 decoration: BoxDecoration(
+        //                             image: DecorationImage(image: AssetImage("images/New/wallfour.jpg"),fit: BoxFit.cover),
+        //                             borderRadius:BorderRadius.circular(20),
+        //                              border: Border.all(
+        //   color: Colors.white, //color of border
+        //   width: 1, //width of border
+        // ),
+        //                             boxShadow:  [BoxShadow(
+        //                               blurRadius: 5.0,
+        //                               offset: Offset(0,5),
+        //                                             ),],
                                     
-                                  ),),
-                              ),),
-                ],
-              ),
+        //                           ),),
+        //                       ),),
+        //         ],
+        //       ),
         //        Row(
         //         children: [
         //           Expanded(
@@ -171,6 +172,7 @@ class Background extends StatelessWidget {
                   Expanded(
                               child: GestureDetector(
                                 onTap: (){
+                                  _mybox.put(1, f);
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:f)));
                                 },
                                 child: Container(
@@ -179,7 +181,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/New/wallsix.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/wallsix.jpg"),fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                      border: Border.all(
           color: Colors.white, //color of border
@@ -194,39 +196,40 @@ class Background extends StatelessWidget {
                               ),),
                 ],
               ),
-               Row(
-                children: [
-                  Expanded(
-                              child: GestureDetector(
-                                onTap: (){
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:g)));
-                                },
-                                child: Container(
+        //        Row(
+        //         children: [
+        //           Expanded(
+        //                       child: GestureDetector(
+        //                         onTap: (){
+        //                           Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:g)));
+        //                         },
+        //                         child: Container(
                     
-                                  margin: EdgeInsets.all(10),
-                                        width: 300,
-                                        height: 300,
-                                        decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/New/wallseven.jpg"),fit: BoxFit.cover),
-                                    borderRadius:BorderRadius.circular(20),
-                                     border: Border.all(
-          color: Colors.white, //color of border
-          width: 1, //width of border
-        ),
-                                    boxShadow:  [BoxShadow(
-                                      blurRadius: 5.0,
-                                      offset: Offset(0,5),
-                                                    ),],
+        //                           margin: EdgeInsets.all(10),
+        //                                 width: 300,
+        //                                 height: 300,
+        //                                 decoration: BoxDecoration(
+        //                             image: DecorationImage(image: AssetImage("images/New/wallseven.jpg"),fit: BoxFit.cover),
+        //                             borderRadius:BorderRadius.circular(20),
+        //                              border: Border.all(
+        //   color: Colors.white, //color of border
+        //   width: 1, //width of border
+        // ),
+        //                             boxShadow:  [BoxShadow(
+        //                               blurRadius: 5.0,
+        //                               offset: Offset(0,5),
+        //                                             ),],
                                     
-                                  ),),
-                              ),),
-                ],
-              ),
+        //                           ),),
+        //                       ),),
+        //         ],
+        //       ),
                Row(
                 children: [
                   Expanded(
                               child: GestureDetector(
                                 onTap: (){
+                                  _mybox.put(1, h);
                                   Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(wall:h)));
                                 },
                                 child: Container(
@@ -235,7 +238,7 @@ class Background extends StatelessWidget {
                                         width: 300,
                                         height: 300,
                                         decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/New/walleight.jpg"),fit: BoxFit.cover),
+                                    image: DecorationImage(image: AssetImage("images/walleight.jpg"),fit: BoxFit.cover),
                                     borderRadius:BorderRadius.circular(20),
                                      border: Border.all(
           color: Colors.white, //color of border

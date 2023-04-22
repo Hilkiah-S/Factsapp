@@ -32,397 +32,340 @@ class _CategoryState extends State<Category> {
             title:Text("Categories",style: TextStyle(color: Colors.white),),
             backgroundColor: Colors.black,
             
-            toolbarHeight: 50,
+            toolbarHeight: 40,
           ),
           body: SingleChildScrollView(
-            child: Column(
+            child:Column(
               children: [
-                Row(
+                Stack(
+  children: [
+    Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Align(
+            alignment: Alignment.center,
+            child: 
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => Home(select:1)));
+                        setState(() {
+                          generalbool ? generalbool = false : generalbool = true;
+                        });
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(right:8.0),
+                        child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   
-                    
-                        Expanded(
-                          child: Stack(
-                                            children: <Widget>[
-                          
-                          GestureDetector(
-                            onTap:() {
-                            
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:1)));
-                                
-                              setState(() {
-                                generalbool? generalbool=false:generalbool=true;
-                              });
-                            },
-                            child: Expanded(
-                              child: Container(
-                                margin: EdgeInsets.all(10),
-                                      width: 500,
-                                      height: 300,
-                                      decoration: BoxDecoration(
-                                  image: DecorationImage(image: AssetImage("images/general.jpg"),fit: BoxFit.cover),
-                                  borderRadius:BorderRadius.circular(20),
-                                  boxShadow:  [BoxShadow(
-                                    blurRadius: 5.0,
-                                    offset: Offset(0,5),
-                                                  ),],
-                                  
-                                ),
-                                child: Visibility(
-                                  visible: generalbool,
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Icon(Icons.check_circle_outline_rounded ,color: Color.fromARGB(255, 44, 245, 51),size:70)),
-                                ),),
-                            ),
-                          ),
-                                             
-                          Positioned.fill(child: Align(
-                            alignment: Alignment.center,
-                            child: Text("General",style: TextStyle(color: Colors.white,fontSize: 30),))),
-                                            ],
-                                          ),
-                        ),
-                      
-            
-                        Expanded(
-                          child: Stack(
-                                            children: <Widget>[
-                          
-                          GestureDetector(
-                            onTap:() {
-                               
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:2)));
-                                
-                              setState(() {
-                                universebool? universebool=false:universebool=true;
-                              });
-                            },
-                            child: Expanded(
-                              child: Container(
-                                margin: EdgeInsets.all(10),
-                                      width: 500,
-                                      height: 300,
-                                      decoration: BoxDecoration(
-                                  image: DecorationImage(image: AssetImage("images/universe.jpg"),fit: BoxFit.cover),
-                                  borderRadius:BorderRadius.circular(20),
-                                  boxShadow:  [BoxShadow(
-                                    blurRadius: 5.0,
-                                    offset: Offset(0,5),
-                                                  ),],
-                                  
-                                ),
-                                child: Visibility(
-                                  visible: universebool,
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Icon(Icons.check_circle_outline_rounded ,color: Color.fromARGB(255, 44, 245, 51),size:70)),
-                                ),),
-                            ),
-                          ),
-                                             
-                          Positioned.fill(child: Align(
-                            alignment: Alignment.center,
-                            child: Text("Universe",style: TextStyle(color: Colors.white,fontSize: 30),))),
-                                            ],
-                                          ),
-                        ),
-            
-            
-            
-                    
-                    ],
-                ),
-                Row(
-                  children: [
-                   
-                    
-                        Expanded(
-                          child: Stack(
-                                            children: <Widget>[
-                          
-                          GestureDetector(
-                            onTap:() {
-                              
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:3)));
-                                
-                              setState(() {
-                                sportbool? sportbool=false:sportbool=true;
-                              });
-                            },
-                            child: Expanded(
-                              child: Container(
-                                margin: EdgeInsets.all(10),
-                                      width: 500,
-                                      height: 300,
-                                      decoration: BoxDecoration(
-                                  image: DecorationImage(image: AssetImage("images/sport.jpg"),fit: BoxFit.cover),
-                                  borderRadius:BorderRadius.circular(20),
-                                  boxShadow:  [BoxShadow(
-                                    blurRadius: 5.0,
-                                    offset: Offset(0,5),
-                                                  ),],
-                                  
-                                ),
-                                child: Visibility(
-                                  visible: sportbool,
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Icon(Icons.check_circle_outline_rounded ,color: Color.fromARGB(255, 44, 245, 51),size:70)),
-                                ),),
-                            ),
-                          ),
-                                             
-                          Positioned.fill(child: Align(
-                            alignment: Alignment.center,
-                            child: Text("Sports",style: TextStyle(color: Colors.white,fontSize: 30),))),
-                                            ],
-                                          ),
-                        ),
-                      
-            
-                        Expanded(
-                          child: Stack(
-                                            children: <Widget>[
-                          
-                          GestureDetector(
-                            onTap:() {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:4)));
-                              setState(() {
-                                animalbool? animalbool=false:animalbool=true;
-                              });
-                            },
-                            child: Expanded(
-                              child: Container(
-                                margin: EdgeInsets.all(10),
-                                      width: 500,
-                                      height: 300,
-                                      decoration: BoxDecoration(
-                                  image: DecorationImage(image: AssetImage("images/jaguar.jpg"),fit: BoxFit.cover),
-                                  borderRadius:BorderRadius.circular(20),
-                                  boxShadow:  [BoxShadow(
-                                    blurRadius: 5.0,
-                                    offset: Offset(0,5),
-                                                  ),],
-                                  
-                                ),
-                                child: Visibility(
-                                  visible: animalbool,
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Icon(Icons.check_circle_outline_rounded ,color: Color.fromARGB(255, 44, 245, 51),size:70)),
-                                ),),
-                            ),
-                          ),
-                                             
-                          Positioned.fill(child: Align(
-                            alignment: Alignment.center,
-                            child: Text("Animals",style: TextStyle(color: Colors.white,fontSize: 30),))),
-                                            ],
-                                          ),
-                        ),
-            
-            
-            
-                    
-                    ],
-                ),
-                Row(
-                  children: [
-                   
-                    
-                        Expanded(
-                          child: Stack(
-                                            children: <Widget>[
-                          
-                          GestureDetector(
-                            onTap:() {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:5)));
-                              setState(() {
-                                sciencebool? sciencebool=false:sciencebool=true;
-                              });
-                            },
-                            child: Expanded(
-                              
-                              child: Container(
-                                margin: EdgeInsets.all(10),
-                                      width: 500,
-                                      height: 300,
-                                      decoration: BoxDecoration(
-                                  image: DecorationImage(image: AssetImage("images/science.jpg"),fit: BoxFit.cover),
-                                  borderRadius:BorderRadius.circular(20),
-                                  boxShadow:  [BoxShadow(
-                                    blurRadius: 5.0,
-                                    offset: Offset(0,5),
-                                                  ),],
-                                  
-                                ),
-                                child: Visibility(
-                                  visible: sciencebool,
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Icon(Icons.check_circle_outline_rounded ,color: Color.fromARGB(255, 44, 245, 51),size:70)),
-                                ),),
-                            ),
-                          ),
-                                             
-                          Positioned.fill(child: Align(
-                            alignment: Alignment.center,
-                            child: Text("Science",style: TextStyle(color: Colors.white,fontSize: 30),))),
-                                            ],
-                                          ),
-                        ),
-                      
-                        
-                        Expanded(
-                          child: Stack(
-                                            children: <Widget>[
-                          
-                          GestureDetector(
-                            onTap:() {
-                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:6)));
-                              setState(() {
-                                humanbodybool? humanbodybool=false:humanbodybool=true;
-                              });
-                            },
-                            child: Container(
-                              margin: EdgeInsets.all(10),
-                                    width: 500,
-                                    height: 300,
-                                    decoration: BoxDecoration(
-                                image: DecorationImage(image: AssetImage("images/humanbody.jpg"),fit: BoxFit.cover),
-                                borderRadius:BorderRadius.circular(20),
-                                boxShadow:  [BoxShadow(
-                                  blurRadius: 5.0,
-                                  offset: Offset(0,5),
-                          ),],
-                                
-                              ),
-                              child: Visibility(
-                                visible: humanbodybool,
-                                child: Align(
-                                  alignment: Alignment.topRight,
-                                  child: Icon(Icons.check_circle_outline_rounded ,color: Color.fromARGB(255, 44, 245, 51),size:70)),
-                              ),),
-                          ),
-                                             
-                          Positioned.fill(child: Align(
-                            alignment: Alignment.center,
-                            child: Expanded(
-                              child: Text("Human Body",style: TextStyle(color: Colors.white,fontSize: 30, shadows: <Shadow>[
-                                            Shadow(
-                                              offset: Offset(0.0, 0.5),
-                                              blurRadius: 5.0,
-                                              color: Color.fromARGB(255, 0, 0, 0),
-                                            ),]),),
-                            ))),
-                                            ],
-                                          ),
-                        ),
-                        
-                        
-                        
-                    
-                    ],
-                ),
-                
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Stack(
-                                                children: <Widget>[
-                              
-                              GestureDetector(
-                                onTap:() {
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:7)));
-                                  setState(() {
-                                    lifehackbool? lifehackbool=false:lifehackbool=true;
-                                  });
-                                },
-                                child: Container(
-                                  margin: EdgeInsets.all(10),
-                                        width: 500,
-                                        height: 300,
-                                        decoration: BoxDecoration(
-                                    image: DecorationImage(image: AssetImage("images/Lifehacks.jpg"),fit: BoxFit.cover),
-                                    borderRadius:BorderRadius.circular(20),
-                                    boxShadow:  [BoxShadow(
-                                      blurRadius: 5.0,
-                                      offset: Offset(0,5),
+                    Flexible(
+                      flex:1,
+                      child: Container(
+                                       
+                            height: 250,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(image: AssetImage("images/general.jpg"), fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow:  [BoxShadow(
+                                blurRadius: 5.0,
+                                offset: Offset(0,5),
                               ),],
-                                    
-                                  ),
-                                  child: Visibility(
-                                    visible: lifehackbool,
-                                    child: Align(
-                                      alignment: Alignment.topRight,
-                                      child: Icon(Icons.check_circle_outline_rounded ,color: Color.fromARGB(255, 44, 245, 51),size:70)),
-                                  ),),
-                              ),
-                                                 
-                              Positioned.fill(child: Align(
-                                alignment: Alignment.center,
-                                child: Text("Life hacks",style: TextStyle(color: Colors.white,fontSize: 30,shadows: <Shadow>[
-                                  Shadow(
-                                    offset: Offset(0.0, 0.5),
-                                    blurRadius: 5.0,
-                                    color: Color.fromARGB(255, 0, 0, 0),
-                                  ),]),))),
-                                                ],
-                                              ),
                             ),
-                            
-                        Expanded(
-                          child: Stack(
-                                            children: <Widget>[
-                          
-                          GestureDetector(
-                            onTap:() {
-                               
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Home(select:8)));
-                                
-                              setState(() {
-                                universebool? universebool=false:universebool=true;
-                              });
-                            },
-                            child: Expanded(
-                              child: Container(
-                                margin: EdgeInsets.all(10),
-                                      width: 500,
-                                      height: 300,
-                                      decoration: BoxDecoration(
-                                  image: DecorationImage(image: AssetImage("images/human.jpeg"),fit: BoxFit.cover),
-                                  borderRadius:BorderRadius.circular(20),
-                                  boxShadow:  [BoxShadow(
-                                    blurRadius: 5.0,
-                                    offset: Offset(0,5),
-                                                  ),],
-                                  
-                                ),
-                                child: Visibility(
-                                  visible: universebool,
-                                  child: Align(
-                                    alignment: Alignment.topRight,
-                                    child: Icon(Icons.check_circle_outline_rounded ,color: Color.fromARGB(255, 44, 245, 51),size:70)),
-                                ),),
-                            ),
-                          ),
-                                             
-                          Positioned.fill(child: Align(
+                            child: Align(
                             alignment: Alignment.center,
-                            child: Text("Sex",style: TextStyle(color: Colors.white,fontSize: 30),))),
-                                            ],
-                                          ),
-                        ),
-                          ],
-                        ),
-            
-            
-              ],
-            ),
-          ),
-        ),
-    );
+                            child: Text("General", style: TextStyle(color: Colors.white, fontSize: 30)),
+                          ),
+                          ),
+                    ),
+       ] ),
+                    ),
+                    ),
+                    
+                    
+                    
+                    )),
+            Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Align(
+            alignment: Alignment.center,
+            child: 
+                    Padding(
+                      padding: const EdgeInsets.only(right:8.0),
+                      child: Row(
+             
+                  children: [
+                    Flexible(
+                    flex:1,
+                    child: GestureDetector(
+                      onTap:() {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home(select:3)));
+                      setState(() {
+                        generalbool ? generalbool = false : generalbool = true;
+                      });
+                    },
+                      child: Container(
+                                       
+                            height: 300,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(image: AssetImage("images/sport.jpg"),fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow:  [BoxShadow(
+                                blurRadius: 5.0,
+                                offset: Offset(0,5),
+                              ),],
+                            ),
+                            child: Align(
+                            alignment: Alignment.center,
+                            child: Text("Sports", style: TextStyle(color: Colors.white, fontSize: 30)),
+                          ),
+                          ),
+                    ),
+                    ),
+                    SizedBox(width:8),
+                   Flexible(
+                    flex:1,
+                    child: GestureDetector(
+                      onTap:() {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home(select:4)));
+                      setState(() {
+                        generalbool ? generalbool = false : generalbool = true;
+                      });
+                    },
+                      child: Container(
+                                       
+                            height: 300,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(image: AssetImage("images/jaguar.jpg"),fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow:  [BoxShadow(
+                                blurRadius: 5.0,
+                                offset: Offset(0,5),
+                              ),],
+                            ),
+                            child: Align(
+                            alignment: Alignment.center,
+                            child: Text("Animals", style: TextStyle(color: Colors.white, fontSize: 30)),
+                          ),
+                          ),
+                    ),
+                    ),
+       ] ),
+                    ),
+                    
+                    
+                    
+                    )),
+                     Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Align(
+            alignment: Alignment.center,
+            child: 
+                    Padding(
+                      padding: const EdgeInsets.only(right:8.0),
+                      child: Row(
+             
+                  children: [
+                    Flexible(
+                    flex:1,
+                    child: GestureDetector(
+                      onTap:() {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home(select:6)));
+                      setState(() {
+                        generalbool ? generalbool = false : generalbool = true;
+                      });
+                    },
+                      child: Container(
+                                       
+                            height: 300,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(image: AssetImage("images/humanbody.jpg"),fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow:  [BoxShadow(
+                                blurRadius: 5.0,
+                                offset: Offset(0,5),
+                              ),],
+                            ),
+                            child: Align(
+                            alignment: Alignment.center,
+                            child:Container(
+  decoration: BoxDecoration(
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.3),
+        spreadRadius: 2,
+        blurRadius: 5,
+        offset: Offset(0, 2),
+      ),
+    ],
+  ),
+  child: Text(
+    'Human body',
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: 30,
+      
+    ),
+  ),
+)
+                          ),
+                          ),
+                    ),
+                    ),
+                    SizedBox(width:8),
+                   Flexible(
+                    flex:1,
+                    child: GestureDetector(
+                      onTap:() {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home(select:5)));
+                      setState(() {
+                        generalbool ? generalbool = false : generalbool = true;
+                      });
+                    },
+                      child: Container(
+                                       
+                            height: 300,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(image: AssetImage("images/science.jpg"),fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow:  [BoxShadow(
+                                blurRadius: 5.0,
+                                offset: Offset(0,5),
+                              ),],
+                            ),
+                            child: Align(
+                            alignment: Alignment.center,
+                            child: Container(
+  decoration: BoxDecoration(
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.3),
+        spreadRadius: 1,
+        blurRadius: 5,
+        offset: Offset(0, 2),
+      ),
+    ],
+  ),
+  child: Text(
+    'Science',
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: 30,
+      
+    ),
+  ),
+)
+,
+                          ),
+                          ),
+                    ),
+                    ),
+       ] ),
+                    ),
+                    
+                    
+                    
+                    )),
+                    Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Align(
+            alignment: Alignment.center,
+            child: 
+                    Padding(
+                      padding: const EdgeInsets.only(right:8.0),
+                      child: Row(
+             
+                  children: [
+                    Flexible(
+                    flex:1,
+                    child: GestureDetector(
+                      onTap:() {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home(select:8)));
+                      setState(() {
+                        generalbool ? generalbool = false : generalbool = true;
+                      });
+                    },
+                      child: Container(
+                                       
+                            height: 300,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(image: AssetImage("images/human.jpeg"),fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow:  [BoxShadow(
+                                blurRadius: 5.0,
+                                offset: Offset(0,5),
+                              ),],
+                            ),
+                            child: Align(
+                            alignment: Alignment.center,
+                            child: Container(
+  decoration: BoxDecoration(
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black.withOpacity(0.3),
+        spreadRadius: 1,
+        blurRadius: 5,
+        offset: Offset(0, 2),
+      ),
+    ],
+  ),
+  child: Text(
+    'Sex',
+    style: TextStyle(
+      color: Colors.white,
+      fontSize: 30,
+      // fontWeight: FontWeight.bold,
+    ),
+  ),
+)
+                          ),
+                          ),
+                    ),
+                    ),
+                    SizedBox(width:8),
+                   Flexible(
+                    flex:1,
+                    child: GestureDetector(
+                      onTap:() {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home(select:7)));
+                      setState(() {
+                        generalbool ? generalbool = false : generalbool = true;
+                      });
+                    },
+                      child: Container(
+                                       
+                            height: 300,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(image: AssetImage("images/Lifehacks.jpg"),fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow:  [BoxShadow(
+                                blurRadius: 5.0,
+                                offset: Offset(0,5),
+                              ),],
+                            ),
+                            child: Align(
+                            alignment: Alignment.center,
+                            child: Text("Life Hacks", style: TextStyle(color: Colors.white, fontSize: 30)),
+                          ),
+                          ),
+                    ),
+                    ),
+       ] ),
+                    ),
+                    
+                    
+                    
+                    ))
+        
+        
+
+
+
+                    ]
+                    )]
+                    )]))))
+            ;
+    
+  
     
   }
 }

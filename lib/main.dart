@@ -28,9 +28,12 @@ void main()async {
       NotificationChannel(
         channelKey: 'basic_channel',
         channelName: 'Facts of the Day',
-        channelDescription: 'Shows interesting Facts'
+        channelDescription: 'Shows interesting Facts',
+        
       ),
+      
     ],
+    debug: true,
   );
   runApp(MaterialApp (
     debugShowCheckedModeBanner: false,

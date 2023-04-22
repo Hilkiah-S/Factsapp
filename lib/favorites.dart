@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:swipe/swipe.dart';
-
+import'package:hive_flutter/hive_flutter.dart';
 class Favour extends StatefulWidget {
   // const Favour({super.key});
 var sent;
-
 Favour({Key? mykey,this.sent}):super(key:mykey);
   @override
   State<Favour> createState() => _FavourState();
 }
 
 class _FavourState extends State<Favour> {
-  
+  List newlist = [];
+  final _mybox = Hive.box('testBox');
   int currentindex =0;
    void Ensuresafe(){
     print("List Empty");
-   if(widget.sent==null){
-    setState(() {
-      widget.sent.add("Your List is Empty");
-    });
+   if(_mybox.get(456)!=null){
+      
+      _mybox.get(456).add("Your list is empty");
+      
+    
    }
   }
   void Touched() {
-    if(currentindex == (widget.sent.length-1)) {
-      currentindex=widget.sent.length-1;
+    if(currentindex == (_mybox.get(456).length-1)) {
+      currentindex=_mybox.get(456).length-1;
     }
     else{
+      print(_mybox.get(456));
     setState(() {
       currentindex++;
     });}
@@ -44,7 +46,10 @@ class _FavourState extends State<Favour> {
 @override
 void initState(){
   WidgetsFlutterBinding.ensureInitialized();
-  Ensuresafe;
+  
+  if(_mybox.get(456)==null){
+    _mybox.get(456).add("Empty List");
+  }
 }
 
 
@@ -52,35 +57,148 @@ void initState(){
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(title: Text("Favorites"),toolbarHeight: 40,backgroundColor: Colors.orange,),
-        body: Swipe(
-          onSwipeUp: Touched,
-          onSwipeDown: Toucheddown,
-          child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    Colors.blue,
-                    Colors.red,
-                  ],
-                )
-              ),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.only(left:30.0),
-                  child: Text(
-                    widget.sent[currentindex],
-                    style: TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
+        appBar: AppBar(title: Text("Favorites"),toolbarHeight: 35,backgroundColor: Colors.black),
+        body: Container(
+            decoration: BoxDecoration(
+             color: Color.fromARGB(255, 244, 243, 243),
+            ),
+            child:
+                 Stack(
+                  
+                  children: [
+                    Stack(
+                      
+                      children: [
+                        Center(
+                          child: Padding(
+                            padding: const EdgeInsets.only(left:30.0),
+                            child: Text(
+                              _mybox.get(456)[currentindex],
+                              style: TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(40.0),
+                          child: Align(
+                            alignment: Alignment.topRight,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Container(
+                          
+                                width: 55,
+                                height: 65,
+                                
+                                decoration: BoxDecoration(
+                                  color: Colors.grey,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(20)
+                                  ),
+                                  border: Border.all(
+                                    width: 2,
+                                    color: Colors.grey,
+                                  )
+                                ),
+                                child: IconButton(onPressed: (){
+                                  
+                                    _mybox.get(456).removeWhere((item)=>item==_mybox.get(80)[currentindex]);
+                                
+                                  
+                                  newlist.addAll(_mybox.get(456));
+                                  
+                                    _mybox.put(456, newlist);
+                                
+                                  print("remove pressed");
+                                  print(newlist);
+                                }, icon: Icon(Icons.delete,color: Colors.black,size: 35,))),
+                            ],
+                            ),
+                          ),
+                        ),
+
+                         ],
                     ),
-                  ),
-                ),)),
-        ),
-      ),
-    );
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            width: 200,
+                            height: 90,
+                            decoration: BoxDecoration(
+                              color: Colors.grey[800],
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(30)
+                              )
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left:30.0,bottom: 15),
+                              child: Row(
+                               
+                                children: [
+                                  
+                                  IconButton(color:Colors.white,padding:const EdgeInsets.only(right:20.0),focusColor: Colors.blue,highlightColor: Colors.blue,hoverColor: Colors.blue,splashColor: Colors.blue,onPressed: Toucheddown,icon: Icon(Icons.arrow_back_ios_new_outlined,size: 70,)),
+                                  SizedBox(
+                                    width: 1,
+                                  
+                                    child: Divider(
+                       
+                       color: Colors.white,
+                         ),
+                                  ),
+                                  IconButton(color:Colors.white,padding:const EdgeInsets.only(left:20.0) ,onPressed: Touched,icon: Icon(Icons.arrow_forward_ios_outlined,size: 70,))
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+//                        Positioned(
+//   bottom: 40,
+//   left: 0,
+//   right: 0,
+//   child: FractionalTranslation(
+//     translation: const Offset(0, 1),
+//     child: Container(
+//       width: 100,
+//       height: 60,
+//       decoration: BoxDecoration(
+//         color: Colors.grey[800],
+//         borderRadius: BorderRadius.all(Radius.circular(30))
+//       ),
+//       child: Center(
+//         child: Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             IconButton(
+//               color: Colors.white,
+//               padding: const EdgeInsets.only(right: 20.0),
+//               focusColor: Colors.blue,
+//               highlightColor: Colors.blue,
+//               hoverColor: Colors.blue,
+//               splashColor: Colors.blue,
+//               onPressed: Toucheddown,
+//               icon: Icon(Icons.arrow_back_ios_new_outlined, size: 50)
+//             ),
+//             IconButton(
+//               color: Colors.white,
+//               padding: const EdgeInsets.only(left: 20.0),
+//               onPressed: Touched,
+//               icon: Icon(Icons.arrow_forward_ios_outlined, size: 50)
+//             )
+//           ],
+//         ),
+//       ),
+//     ),
+//   ),
+// ),
+
+                     
+                  ],
+                ),
+              ),));
+     
   }
 }

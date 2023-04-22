@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:factsapp/home.dart';
-import 'package:intl/intl.dart';
+
+import'package:hive_flutter/hive_flutter.dart';
 class Settings extends StatefulWidget {
   const Settings({super.key});
 
@@ -9,10 +10,22 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+
+  final _mybox = Hive.box('testbox');
   int freq=0;
+
   int starttime =6;
   int endtime=10;
-
+   TimeOfDay time=TimeOfDay(hour:10,minute:30);
+   @override
+   void initState(){
+    if(!(_mybox.get(23)==null)){
+   if(!(time==_mybox.get(23))){
+    setState(() {
+      time=_mybox.get(23);
+    });
+   }}
+   }
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,51 +42,48 @@ class _SettingsState extends State<Settings> {
           children:[
             Padding(
               padding: const EdgeInsets.all(10.0),
-              child: Text("Set Frequency for notification",style: TextStyle(color:Colors.black,fontSize: 20),),
+              child: Text("Schedule Notification",style: TextStyle(color:Colors.black,fontSize: 20),),
             ),
             Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+            child: Column(
+              children: [
+                Text("${time.hour}:${time.minute}",style: TextStyle(fontSize: 40),),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
            Padding(
-             padding: const EdgeInsets.all(10.0),
-             child: ElevatedButton(
-  onPressed: () {
+                 padding: const EdgeInsets.all(10.0),
+                 child: ElevatedButton(
+  onPressed: () async{
+    TimeOfDay? newTime = await 
+    showTimePicker(context: context, initialTime:time);
     // action to perform when the button is pressed
-  },
+    if(newTime==null)return;
+    setState(() {
+      time=newTime;
+    });
+    _mybox.put(23,time);
+    setState(() {
+     time= _mybox.get(23);
+    });
+    },
   style: ElevatedButton.styleFrom(
     backgroundColor: Colors.white, // background color of the button
     // text color
-    minimumSize: Size(60, 80), // minimum size of the button
+    minimumSize: Size(70, 57), // minimum size of the button
     padding: EdgeInsets.symmetric(horizontal: 16), // padding of the button
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(8), // button border radius
     ),
   ),
-  child: Text('1X',style: TextStyle(color:Colors.black,fontSize: 30),), // text displayed on the button
+  child: Text('Set time',style: TextStyle(color:Colors.black,fontSize: 25),), // text displayed on the button
 ),
            ),
- Padding(
-   padding: const EdgeInsets.all(10.0),
-   child: ElevatedButton(
-    onPressed: () {
-      // action to perform when the button is pressed
-    },
-    style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.white, // background color of the button
-      // text color
-      minimumSize: Size(60, 80), // minimum size of the button
-      padding: EdgeInsets.symmetric(horizontal: 16), // padding of the button
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8), // button border radius
-      ),
-    ),
-    child: Text('2X',style: TextStyle(color:Colors.black,fontSize: 30),), // text displayed on the button
-),
- )
-            ],
+                ],
          
+                ),
+              ],
             ),
           ),
           ]

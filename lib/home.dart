@@ -34,6 +34,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+
+  
 //   Future<void> readExcelFile() async {
 //
 //   final file = await File('store/oromo.xlsx').readAsBytes();
@@ -78,17 +81,26 @@ class _HomeState extends State<Home> {
   late List<Amharic> amharic;
   String back="";
 
-  
+Ensuresafe(){
+  if(favorites.length==0){
+    favorites.add("Your list is empty");
+  }
+}
   void Touched() {
     if(currentSwipeIndex == filled.length-1) {
+      
       currentSwipeIndex=filled.length-1;
       _mybox.put(40,currentSwipeIndex);
+     
     }
     else{
     setState(() {
       currentSwipeIndex++;
       
     });
+     setState((){
+        xq=changeicon;
+      });
      _mybox.put(40, currentSwipeIndex);
     }
     // box.put('DB',Database(name:"Abebe",currentIndex: currentSwipeIndex,favoritedb: ["THis was put","2ndsession"]));
@@ -100,6 +112,9 @@ class _HomeState extends State<Home> {
       _mybox.put(40, currentSwipeIndex);
     }
     else{
+       setState((){
+        xq=changeicon;
+      });
     setState(() {
       currentSwipeIndex--;
     });
@@ -110,32 +125,33 @@ class _HomeState extends State<Home> {
   Icon changeicon = const Icon(
     Icons.favorite_border_outlined,
     color: Colors.white,
-    size: 40,
+    size: 25
+    
   );
   Icon xq = const Icon(
-    Icons.favorite_border_outlined,
+    Icons.favorite,
     color: Colors.white,
-    size: 40,
+    size: 25,
   );
   Icon changeiconshare = const Icon(
     Icons.share,
     color: Colors.white,
-    size: 40,
+    size: 25,
   );
   Icon changediconshare = const Icon(
     Icons.share,
     color: Colors.blue,
-    size: 40,
+    size: 25,
   );
   var b = const Icon(
     Icons.favorite_border_outlined,
     color: Colors.white,
-    size: 40,
+    size: 25,
   );
-  Icon changedicon = const Icon(Icons.favorite, color: Colors.red, size: 40);
+  Icon changedicon = const Icon(Icons.favorite, color: Colors.red, size: 25);
  
   List favorites= [];
-  
+
 bool clicked=false;
 bool value = true;
 bool option = true;
@@ -160,13 +176,14 @@ Future _readExcelOromo(value) async {
   sex.clear();
   humanBiology.clear();
   universe.clear();
+  
     for (var i = 0; i < selectedSheet.maxRows; i++) {
       if(i == 0) continue;
       general.add(selectedSheet.rows[i][0]?.value.toString());
       lifeHack.add(selectedSheet.rows[i][1]?.value.toString());
       animals.add(selectedSheet.rows[i][2]?.value.toString());
-      sport.add(selectedSheet.rows[i][3]?.value.toString());
-      science.add(selectedSheet.rows[i][4]?.value.toString());
+      sport.add(selectedSheet.rows[i][4]?.value.toString());
+      science.add(selectedSheet.rows[i][3]?.value.toString());
       sex.add(selectedSheet.rows[i][5]?.value.toString());
       humanBiology.add(selectedSheet.rows[i][6]?.value.toString());
       universe.add(selectedSheet.rows[i][7]?.value.toString());
@@ -226,6 +243,7 @@ Sheet selectedSheet=amharic;
        calledtofill();
     print('General List $general');
     setState(() {});
+    _mybox.put(80, general);
   }
   // _mybox.g
   void calledtofill(){
@@ -268,16 +286,38 @@ Sheet selectedSheet=amharic;
     
   }
   late List selected;
- 
+ TimeOfDay timely=TimeOfDay(hour:2,minute:00);
+//  String<bool> determine(){
+//  if(!(_mybox.get(80)==null)){
+//   return true;}
+//  }
+late bool gatefav;
   @override
   void initState() {
     // Database one = box.get('Db');
   // print(one.favoritedb);
   // addtobedisplayed(valuebg);
   _readExcel(value);
-  
+
   super.initState();
-    // readExcelFile();
+  if( _mybox.get(456)==null){
+      setState(() {
+        gatefav=false;
+      });
+  }
+  else if( _mybox.get(456)!=null){
+    setState(() {
+      gatefav=true;
+    });
+  }
+  if(_mybox.get(23)==null){
+    _mybox.put(23,timely);
+  }else if(!(_mybox.get(23)==null)){
+setState(() {
+  timely=_mybox.get(23);
+});
+  }
+ 
     AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
       if (!isAllowed) {
         AwesomeNotifications().requestPermissionToSendNotifications();
@@ -285,17 +325,13 @@ Sheet selectedSheet=amharic;
     });
     AwesomeNotifications().createNotification(
       content: NotificationContent(
+        icon:"assets/bulb.png",
         id: 20,
         channelKey: 'basic_channel',
         title: "ይህን ያውቃሉ?",
-        body: "ደስተኛ ስንሆን የምንፈልገው እንቅልፍ ይቀንሳል",
+        body: "ከሰውነትዎ ውስጥ ግማሽ ያህሉ ባክቴሪያዎች ናቸው።",
       ),
-      schedule: NotificationCalendar(
-                 hour: 9,
-                 minute: 57,
-                 second: 10,
-                 repeats: true,
-                   )
+  
     );
     
     if(_mybox.get(40)!=null){
@@ -308,10 +344,14 @@ Sheet selectedSheet=amharic;
       back = widget.wall;
       _mybox.put(1,back);
       background = _mybox.get(1);
-    } else {
-      back = "wallsix.jpg";
-      // _mybox.put(1,back);
+    } else if(_mybox.get(1)!=null){
+      
       background = _mybox.get(1);
+    }
+    else{
+      back = "wallone.jpg";
+      _mybox.put(1,back);
+       background = _mybox.get(1);
     }
 
     
@@ -340,7 +380,7 @@ Sheet selectedSheet=amharic;
                 height: double.infinity,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("images/New/$background"), fit: BoxFit.cover),
+                      image: AssetImage("images/$background"), fit: BoxFit.cover),
                 ),
                 child: Swipe(
                   onSwipeUp: Touched,
@@ -362,7 +402,12 @@ Sheet selectedSheet=amharic;
                             child: Column(
                               children: [
                                 Text("Amharic/Afaan Oromo",style: TextStyle(color:Colors.white),),
-                                Switch(value: option, onChanged: (Changed)async{setState(() {
+                                Switch(value: option,
+                                activeColor: Colors.grey,
+                                activeTrackColor: Colors.white,
+                                inactiveTrackColor: Colors.white,
+                                inactiveThumbColor: Colors.grey,
+                                 onChanged: (Changed)async{setState(() {
                                   option=Changed;
                                   value=!value;
                                   
@@ -398,76 +443,76 @@ Sheet selectedSheet=amharic;
                           //   ],
                           // ),
                           Positioned(
-                            bottom:70.0,
-                            left:90.0,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  IconButton(
-                                      onPressed: () {
-                                        
-                                        setState(() {
-                                          // if(again=true){
-                          
-                                          //   changeicon=changedicon;
-                                          //   again=false;
-                                          //   }
-                                          //   if(again=false){
-                                          //    changeicon=b;
-                          
-                                          //   }
-                                          if (favoritebool == true) {
-                                            xq = changeicon;
-                                            favoritebool = false;
-                                            favorites.remove(filled[currentSwipeIndex]);
-                                            // box!.put('DB',Database(name:"Abebe",currentIndex: 0,favoritedb: favorites));
-                                            print(favorites);
-                                          } else {
-                                            xq = changedicon;
-                                            favoritebool = true;
-                                            
-                                            favorites.add(filled[
-                                              currentSwipeIndex
-                                            ]);
-                                            print(favorites);
-                                            writeintodb(filled[currentSwipeIndex]);
-                                          }
-                                        });
-                                      },
-                                      icon: xq),
-                                  Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                  
-                                        child: IconButton(
+                            bottom:65.0,
+                            left:31.0,
+                            child: Container(
+                              height:55,
+                              width:300,
+                              decoration: BoxDecoration(
+                                color:Colors.black,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    IconButton(
                                         onPressed: () {
-                                          print(_mybox.get(2));
-                                          Share.share(filled[currentSwipeIndex]!);
+                                          
                                           setState(() {
-                                            changeiconshare = changediconshare;
+                                            gatefav=true;
+                                            if (favoritebool == true) {
+                                              xq = changeicon;
+                                              favoritebool = false;
+                                              // favorites.remove(filled[currentSwipeIndex]);
+                                              _mybox.put(456,favorites);
+                                              // box!.put('DB',Database(name:"Abebe",currentIndex: 0,favoritedb: favorites));
+                                              print(favorites);
+                                            } else {
+                                              xq = changedicon;
+                                              favoritebool = true;
+                                              
+                                              favorites.add(filled[
+                                                currentSwipeIndex
+                                              ]);
+                                              _mybox.put(456,favorites);
+                                              print(favorites);
+                                              writeintodb(filled[currentSwipeIndex]);
+                                            }
                                           });
                                         },
-                                        icon: changeiconshare),
-                                  ),
-                                  IconButton(
-                                      icon: const Icon(
-                                        Icons.settings,
-                                        size: 40,
-                                        color: Colors.white,
-                                      ),
-                                      onPressed: () {
-                                        showModalBottomSheet(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return SingleChildScrollView(
-                                                child: Container(
-                                                  width: 500,
-                                                  height: 600,
+                                        icon: xq),
+                                    Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                    
+                                          child: IconButton(
+                                          onPressed: () {
+                                            print(_mybox.get(2));
+                                            Share.share(filled[currentSwipeIndex]!);
+                                            setState(() {
+                                              // changeiconshare = changediconshare;
+                                            });
+                                          },
+                                          icon: changeiconshare),
+                                    ),
+                                    IconButton(
+                                        icon: const Icon(
+                                          Icons.settings,
+                                          size: 25,
+                                          color: Colors.white,
+                                        ),
+                                        onPressed: () {
+                                          showModalBottomSheet(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return Container(
+                                                  width: double.infinity,
+                                                  height: 250,
                                                   decoration: const BoxDecoration(
-                                                    color: Color.fromARGB(
-                                                        255, 247, 245, 245),
+                                                    color: Color.fromARGB(255, 250, 245, 245),
                                                     borderRadius:
                                                         BorderRadius.only(
                                                             topLeft:
@@ -477,300 +522,120 @@ Sheet selectedSheet=amharic;
                                                                 Radius.circular(
                                                                     25)),
                                                   ),
-                                                  child: Column(
+                                                  child:Column(
                                                     children: [
-                                                      Row(
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(top:10.0,left: 10.0,right: 10.0,bottom: 5),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
-                                                          Expanded(
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () {
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                const Settings()));
-                                                              },
-                                                              child: Container(
-                                                                width: 300,
-                                                                height: 100,
-                                                                margin:
-                                                                    const EdgeInsets
-                                                                        .all(10),
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .all(10),
-                                                                decoration: BoxDecoration(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                                15),
-                                                                    boxShadow: <
-                                                                        BoxShadow>[
-                                                                      const BoxShadow(
-                                                                        color: Colors
-                                                                            .black54,
-                                                                        blurRadius:
-                                                                            15.0,
-                                                                        offset: Offset(
-                                                                            0.0,
-                                                                            0.75),
-                                                                      )
-                                                                    ]),
-                                                                child:
-                                                                    const ListTile(
-                                                                  leading: Icon(
-                                                                    Icons
-                                                                        .settings,
-                                                                    color: Colors
-                                                                        .purple,
-                                                                    size: 50,
-                                                                  ),
-                                                                  title: Text(
-                                                                    "General Settings",
-                                                                    style: TextStyle(
-                                                                        color: Color.fromARGB(
-                                                                            255,
-                                                                            65,
-                                                                            64,
-                                                                            64),
-                                                                        fontSize:
-                                                                            30),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
+                                                          ElevatedButton.icon(
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.white, // specify the background color
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(70), // specify the border radius
+    ),
+    minimumSize: Size(330,60), 
+    side: BorderSide(
+      color: Colors.grey,
+    ),
+  ),
+  
+  onPressed: () {
+    Navigator.push(context, MaterialPageRoute(builder: ((context) => Category())));
+  },
+  icon: Icon(Icons.category,color: Colors.purpleAccent,size: 30,), // specify the prefix icon
+  label: Text('Category',style: TextStyle(color: Colors.grey,fontSize: 20),), // specify the button label
+),
+
                                                         ],
                                                       ),
-                                                      Row(
+                                                    ),
+                                                     Padding(
+                                                      padding: const EdgeInsets.only(top:5.0,left: 10.0,right: 10.0,bottom: 5),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
-                                                          Expanded(
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () => {
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                 Category())),
-                                                              },
-                                                              child: Container(
-                                                                width: 300,
-                                                                height: 100,
-                                                                margin:
-                                                                    const EdgeInsets
-                                                                        .all(10),
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .all(10),
-                                                                decoration: BoxDecoration(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                                15),
-                                                                    boxShadow: <
-                                                                        BoxShadow>[
-                                                                      const BoxShadow(
-                                                                        color: Colors
-                                                                            .black54,
-                                                                        blurRadius:
-                                                                            10.0,
-                                                                        offset: Offset(
-                                                                            0.0,
-                                                                            0.75),
-                                                                      )
-                                                                    ]),
-                                                                child:
-                                                                    const ListTile(
-                                                                  leading: Icon(
-                                                                    Icons
-                                                                        .category,
-                                                                    color: Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            77,
-                                                                            216,
-                                                                            226),
-                                                                    size: 50,
-                                                                  ),
-                                                                  title: Text(
-                                                                    "Catagories",
-                                                                    style: TextStyle(
-                                                                        color: Color.fromARGB(
-                                                                            255,
-                                                                            65,
-                                                                            64,
-                                                                            64),
-                                                                        fontSize:
-                                                                            30),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
+                                                          ElevatedButton.icon(
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.white, // specify the background color
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(70), // specify the border radius
+    ),
+    minimumSize: Size(330,60), 
+    side: BorderSide(
+      color: Colors.grey,
+    ),
+  ),
+  
+  onPressed: gatefav? () {
+         Navigator.push(context, MaterialPageRoute(builder: ((context) => Favour(sent: favorites,))));
+  }:null,
+  icon: Icon(Icons.favorite,color: Colors.red,size: 30,), // specify the prefix icon
+  label: Text('Favorite',style: TextStyle(color: Colors.grey,fontSize: 20),), // specify the button label
+),
+
                                                         ],
                                                       ),
-                                                      Row(
+                                                    ),
+                                                     Padding(
+                                                       padding: const EdgeInsets.only(top:5.0,left: 10.0,right: 10.0,bottom: 5),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
                                                         children: [
-                                                          Expanded(
-                                                            child: GestureDetector(
-                                                              onTap: () {
-                                                                Navigator.of(context).push(MaterialPageRoute(builder:(context)=>Favour(sent:favorites)));
-                                                              },
-                                                              child: Container(
-                                                                width: 300,
-                                                                height: 100,
-                                                                margin:
-                                                                    const EdgeInsets
-                                                                        .all(10),
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .all(10),
-                                                                decoration: BoxDecoration(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                                9),
-                                                                    boxShadow: <
-                                                                        BoxShadow>[
-                                                                      const BoxShadow(
-                                                                        color: Colors
-                                                                            .black54,
-                                                                        blurRadius:
-                                                                            10.0,
-                                                                        offset:
-                                                                            Offset(
-                                                                                0.0,
-                                                                                0.75),
-                                                                      )
-                                                                    ]),
-                                                                alignment: Alignment
-                                                                    .center,
-                                                                child:
-                                                                    const ListTile(
-                                                                  leading: Icon(
-                                                                    Icons.favorite,
-                                                                    color: Colors
-                                                                        .orange,
-                                                                    size: 50,
-                                                                  ),
-                                                                  title: Text(
-                                                                    "Favorites",
-                                                                    style: TextStyle(
-                                                                        color: Color
-                                                                            .fromARGB(
-                                                                                255,
-                                                                                65,
-                                                                                64,
-                                                                                64),
-                                                                        fontSize:
-                                                                            30),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
+                                                          ElevatedButton.icon(
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.white, // specify the background color
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(70), // specify the border radius
+    ),
+    minimumSize: Size(330,60), 
+    side: BorderSide(
+      color: Colors.grey,
+    ),
+  ),
+  
+  onPressed: () {
+     Navigator.push(context, MaterialPageRoute(builder: ((context) =>Background())));
+  },
+  icon: Icon(Icons.ac_unit,color: Colors.black,size: 30,), // specify the prefix icon
+  label: Text('Background',style: TextStyle(color: Colors.grey,fontSize: 20),), // specify the button label
+),
+
                                                         ],
                                                       ),
-                                                      Row(
-                                                        children: [
-                                                          Expanded(
-                                                            child:
-                                                                GestureDetector(
-                                                              onTap: () {
-                                                                Navigator.push(
-                                                                    context,
-                                                                    MaterialPageRoute(
-                                                                        builder:
-                                                                            (context) =>
-                                                                                Background()));
-                                                              },
-                                                              child: Container(
-                                                                width: 300,
-                                                                height: 100,
-                                                                margin:
-                                                                    const EdgeInsets
-                                                                        .all(10),
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                        .all(10),
-                                                                decoration: BoxDecoration(
-                                                                    color: Colors
-                                                                        .white,
-                                                                    borderRadius:
-                                                                        BorderRadius
-                                                                            .circular(
-                                                                                9),
-                                                                    boxShadow: <
-                                                                        BoxShadow>[
-                                                                      const BoxShadow(
-                                                                        color: Colors
-                                                                            .black54,
-                                                                        blurRadius:
-                                                                            10.0,
-                                                                        offset: Offset(
-                                                                            0.0,
-                                                                            0.75),
-                                                                      )
-                                                                    ]),
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                                child:
-                                                                    const ListTile(
-                                                                  leading: Icon(
-                                                                    Icons.ac_unit,
-                                                                    color: Color
-                                                                        .fromARGB(
-                                                                            255,
-                                                                            104,
-                                                                            102,
-                                                                            99),
-                                                                    size: 50,
-                                                                  ),
-                                                                  title: Text(
-                                                                    "Background",
-                                                                    style: TextStyle(
-                                                                        color: Color.fromARGB(
-                                                                            255,
-                                                                            65,
-                                                                            64,
-                                                                            64),
-                                                                        fontSize:
-                                                                            30),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              );
-                                            });
-                                      }),
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-    );
+                                                    ),
+                                  ]   ));
+                                        });
+                                              })]))))])))))));
+                                  
+  
   }
+  Future<void> _showMyDialog(BuildContext context) async {
+  return showDialog<void>(
+    context: context,
+    barrierDismissible: false, // user must tap button!
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text('Either username or password is incorrect'),
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: const <Widget>[
+              
+              Icon(Icons.error,color: Colors.red,size: 120,),
+            ],
+          ),
+        ),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Try again'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
 }
