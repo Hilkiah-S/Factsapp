@@ -10,34 +10,14 @@ import'package:hive_flutter/hive_flutter.dart';
 void main()async {
   await Hive.initFlutter();
   var box = await Hive.openBox('testBox');
-//  Hive.registerAdapter(DatabaseAdapter());
-//  box.put('DB',Database(name:"Bedelu",currentIndex: 0,favoritedb: ["the","End"]));
-//  WidgetsFlutterBinding.ensureInitialized();
-//  final document = await getApplicationDocumentsDirectory();
-//   await Hive.initFlutter(document.path);
-//  await Hive.initFlutter();
-//  box = await Hive.openBox('DB');
-//  Hive.registerAdapter(DatabaseAdapter());
-//  box.put('DB',Database(name:"Bedelu",currentIndex: 0,favoritedb: ["the","End"]));
+
     
     
-  
-  AwesomeNotifications().initialize(
-    null,
-    [
-      NotificationChannel(
-        channelKey: 'basic_channel',
-        channelName: 'Facts of the Day',
-        channelDescription: 'Shows interesting Facts',
-        
-      ),
-      
-    ],
-    debug: true,
-  );
   runApp(MaterialApp (
     debugShowCheckedModeBanner: false,
-    home:MyApp()));
+    home:MyApp(),
+    )
+    );
 }
 
 class MyApp extends StatelessWidget {

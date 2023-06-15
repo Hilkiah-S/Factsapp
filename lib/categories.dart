@@ -34,6 +34,7 @@ class _CategoryState extends State<Category> {
             
             toolbarHeight: 40,
           ),
+          backgroundColor: Colors.black,
           body: SingleChildScrollView(
             child:Column(
               children: [
@@ -70,6 +71,9 @@ class _CategoryState extends State<Category> {
                                 blurRadius: 5.0,
                                 offset: Offset(0,5),
                               ),],
+                              border: Border.all(
+                                color: Colors.white,
+                              ),
                             ),
                             child: Align(
                             alignment: Alignment.center,
@@ -113,6 +117,9 @@ class _CategoryState extends State<Category> {
                                 blurRadius: 5.0,
                                 offset: Offset(0,5),
                               ),],
+                              border: Border.all(
+                                color: Colors.white,
+                              ),
                             ),
                             child: Align(
                             alignment: Alignment.center,
@@ -141,6 +148,9 @@ class _CategoryState extends State<Category> {
                                 blurRadius: 5.0,
                                 offset: Offset(0,5),
                               ),],
+                              border: Border.all(
+                                color: Colors.white,
+                              ),
                             ),
                             child: Align(
                             alignment: Alignment.center,
@@ -184,6 +194,9 @@ class _CategoryState extends State<Category> {
                                 blurRadius: 5.0,
                                 offset: Offset(0,5),
                               ),],
+                              border: Border.all(
+                                color: Colors.white,
+                              ),
                             ),
                             child: Align(
                             alignment: Alignment.center,
@@ -196,6 +209,7 @@ class _CategoryState extends State<Category> {
         blurRadius: 5,
         offset: Offset(0, 2),
       ),
+      
     ],
   ),
   child: Text(
@@ -231,6 +245,9 @@ class _CategoryState extends State<Category> {
                                 blurRadius: 5.0,
                                 offset: Offset(0,5),
                               ),],
+                              border: Border.all(
+                                color: Colors.white,
+                              ),
                             ),
                             child: Align(
                             alignment: Alignment.center,
@@ -244,6 +261,7 @@ class _CategoryState extends State<Category> {
         offset: Offset(0, 2),
       ),
     ],
+   
   ),
   child: Text(
     'Science',
@@ -275,53 +293,7 @@ class _CategoryState extends State<Category> {
                       child: Row(
              
                   children: [
-                    Flexible(
-                    flex:1,
-                    child: GestureDetector(
-                      onTap:() {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home(select:8)));
-                      setState(() {
-                        generalbool ? generalbool = false : generalbool = true;
-                      });
-                    },
-                      child: Container(
-                                       
-                            height: 300,
-                            decoration: BoxDecoration(
-                              image: DecorationImage(image: AssetImage("images/human.jpeg"),fit: BoxFit.cover),
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow:  [BoxShadow(
-                                blurRadius: 5.0,
-                                offset: Offset(0,5),
-                              ),],
-                            ),
-                            child: Align(
-                            alignment: Alignment.center,
-                            child: Container(
-  decoration: BoxDecoration(
-    boxShadow: [
-      BoxShadow(
-        color: Colors.black.withOpacity(0.3),
-        spreadRadius: 1,
-        blurRadius: 5,
-        offset: Offset(0, 2),
-      ),
-    ],
-  ),
-  child: Text(
-    'Sex',
-    style: TextStyle(
-      color: Colors.white,
-      fontSize: 30,
-      // fontWeight: FontWeight.bold,
-    ),
-  ),
-)
-                          ),
-                          ),
-                    ),
-                    ),
-                    SizedBox(width:8),
+            
                    Flexible(
                     flex:1,
                     child: GestureDetector(
@@ -341,6 +313,9 @@ class _CategoryState extends State<Category> {
                                 blurRadius: 5.0,
                                 offset: Offset(0,5),
                               ),],
+                             border: Border.all(
+                                color: Colors.white,
+                              ),
                             ),
                             child: Align(
                             alignment: Alignment.center,

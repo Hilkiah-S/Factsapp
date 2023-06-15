@@ -34,8 +34,8 @@ dependencies:
   swipe: ^0.0.1
   hive: ^2.0.4
   hive_flutter: ^1.1.0
-
-
+  animated_background: ^2.0.0
+  page_transition: ^2.0.9
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -43,7 +43,9 @@ dependencies:
   path_provider: ^2.0.13
   excel: 2.0.1
   share_plus: ^6.3.1
-
+  google_nav_bar: ^5.0.6
+  line_icons: ^2.0.0
+  
   
 
 dev_dependencies:
@@ -82,9 +84,8 @@ flutter:
   assets:
     - images/
     - images/wallone.jpg
-    - images/walltwo.jpg
+    - images/wallsix.jpg
     - images/wallthree.jpg
-    - images/wallfour.jpg
     - images/walleight.jpg
     - store/
     - assets/data.xlsx
